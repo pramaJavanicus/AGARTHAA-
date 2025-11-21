@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Game Grid</title>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
+
+  * { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: 'JetBrains Mono', monospace;
+    background-color: #121429;
+    color: #f0f0f0;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+/* SIDEBAR */
+.sidebar {
+    background-color: #1c1f3a;
+    width: 100px;
+    min-width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
+}
+
+.sidebar .icon {
+    width: 60px;
+    height: 60px;
+    margin: 25px 0;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #bbbbbb;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.sidebar .icon.active,
+.sidebar .icon:hover {
+    background-color: #c6ff00;
+    color: #000;
+}
+
+.sidebar .icon svg {
+    width: 28px;
+    height: 28px;
+}
+
+/* MAIN CONTENT */
+.main {
+    flex: 1;
+    padding: 40px 60px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+h2 {
+    font-size: 32px;
+    font-weight: 900;
+    margin-bottom: 20px;
+    color: #c6ff00;
+}
+
+/* GRID STYLE */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 30px;
+}
+
+.game-card {
+    background-color: #282c41;
+    border-radius: 25px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 15px #0008;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.game-card:hover {
+    transform: scale(1.03);
+}
+
+.game-card img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+}
+
+.game-info {
+    padding: 15px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.game-title {
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.price {
+    color: #c6ff00;
+    font-size: 16px;
+    font-weight: 800;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- SIDEBAR - GAME GRID (ACTIVE) -->
+<aside class="sidebar">
+
+  <a href="index.html" class="icon" title="Gamepad">
+    <svg fill="currentColor" viewBox="0 0 24 24">
+      <path d="M14 8v4h4v-4h-4zm-8 0v4h4v-4h-4zM3 9v6a3 3 0 003 3h3v-8H6a1 1 0 01-1-1V9H3zM17 6h-2v2h2v4h2V6h-2zm5 .5a2.5 2.5 0 00-5 0v5.5h1.5a1.5 1.5 0 110 3h-6v2a2 2 0 002 2h5a5 5 0 005-5v-6.5z"/>
+    </svg>
+  </a>
+
+  <a href="homepage.html" class="icon" title="Home">
+    <svg fill="currentColor" viewBox="0 0 24 24">
+      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+    </svg>
+  </a>
+
+  <a href="gamegrid.html" class="icon active" title="Game Grid">
+    <svg fill="currentColor" viewBox="0 0 24 24">
+      <path d="M4 4h6v6H4V4zm10 0h6v6h-6V4zm-10 10h6v6H4v-6zm10 0h6v6h-6v-6z"/>
+    </svg>
+  </a>
+
+  <a href="music.html" class="icon" title="Music">
+    <svg fill="currentColor" viewBox="0 0 24 24">
+      <path d="M18 3v12.18a4 4 0 11-2-3.47V3h2z"/>
+    </svg>
+  </a>
+
+  <div class="icon" title="Friends">
+    <svg fill="currentColor" viewBox="0 0 24 24">
+      <path d="M16 14a4 4 0 100-8 4 4 0 000 8zM6 14a6 6 0 1112 0v3H6v-3z"/>
+    </svg>
+  </div>
+
+  <div class="icon" title="Stats">
+    <svg fill="currentColor" viewBox="0 0 24 24">
+      <path d="M4 11h2v9H4v-9zm7-6h2v15h-2V5zm7 9h2v6h-2v-6z"/>
+    </svg>
+  </div>
+
+  <div class="icon" title="Cart">
+    <svg fill="currentColor" viewBox="0 0 24 24">
+      <path d="M7 18a2 2 0 100 4 2 2 0 000-4zm10 0a2 2 0 100 4 2 2 0 000-4zM3 3h2l3.6 7.59L5.25 15.04a1 1 0 00.9 1.46h12.1v-2H7.42L8.1 12H19a1 1 0 00.96-.74l2-8A1 1 0 0020 2H6L4 3z"/>
+    </svg>
+  </div>
+
+  <div class="icon" title="Download">
+    <svg fill="currentColor" viewBox="0 0 24 24">
+      <path d="M18 14v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4H4l8 8 8-8h-4zm-6 0V2H10v12H4l8 8 8-8h-6z"/>
+    </svg>
+  </div>
+
+</aside>
+
+
+<!-- MAIN CONTENT -->
+<main class="main">
+
+<h2>Game Grid</h2>
+
+<div class="grid-container">
+
+        <div class="game-card">
+            <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/846a9086-8a40-43e0-aa10-2fc7d6d73730/dc7nxjb-1a91728d-ee13-4135-8e58-75cc798b2694.jpg/v1/fill/w_730,h_1095,q_70,strp/far_cry_5_poster_seed_family_by_mintmovi3_dc7nxjb-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTM1MCIsInBhdGgiOiIvZi84NDZhOTA4Ni04YTQwLTQzZTAtYWExMC0yZmM3ZDZkNzM3MzAvZGM3bnhqYi0xYTkxNzI4ZC1lZTEzLTQxMzUtOGU1OC03NWNjNzk4YjI2OTQuanBnIiwid2lkdGgiOiI8PTkwMCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.dBItueUwSh56Qqe6b8nh-50FjO7GnoElovc9NAuTCrA" alt="Far Cry 5" />
+            <div class="game-info">
+                <div class="game-title">Far Cry 5</div>
+                <div class="price">$8.99 <span class="discount">20% OFF!</span></div>
+            </div>
+        </div>
+        <div class="game-card">
+            <img src="https://cdn.dribbble.com/userupload/11088666/file/original-0a0645d4ad71f2c3c7661976ac2106e1.png?resize=752x&vertical=center" alt="EA Sports FC 24" />
+            <div class="game-info">
+                <div class="game-title">EA Sports FC 24</div>
+                <div class="price">$69.99</div>
+            </div>
+        </div>
+        <div class="game-card">
+            <img src="https://cdn.europosters.eu/image/1300/102945.jpg" alt="Cyberpunk 2077" />
+            <div class="game-info">
+                <div class="game-title">Cyberpunk 2077</div>
+                <div class="price">$59.99</div>
+            </div>
+        </div>
+        <div class="game-card">
+            <img src="https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png" alt="Grand Theft Auto V" />
+            <div class="game-info">
+                <div class="game-title">Grand Theft Auto V</div>
+                <div class="price">$29.99</div>
+                <div class="price old" style="font-weight: 700;">ENJOY</div>
+            </div>
+        </div>
+        <div class="game-card">
+            <img src="https://cdn1.epicgames.com/spt-assets/dcd83ace86fb4501bde1316ca03e29ad/zenless-zone-zero-ynh5r.png" alt="Zenless Zone Zero" />
+            <div class="game-info"><div class="game-title">Zenless Zone Zero</div><div class="price">FREE</div></div>
+        </div>
+        <div class="game-card">
+            <img src="https://images-cdn.ubuy.co.in/635238435dc762094c218093-genshin-impact-poster-gaming-poster.jpg" alt="Genshin Impact" />
+            <div class="game-info"><div class="game-title">Genshin Impact</div><div class="price">FREE</div></div>
+        </div>
+        <div class="game-card">
+            <img src="https://static.tvtropes.org/pmwiki/pub/images/wuthering_waves_vertical_poster_1.jpg" alt="Wuthering Waves" />
+            <div class="game-info"><div class="game-title">Wuthering Waves</div><div class="price">FREE</div></div>
+        </div>
+        <div class="game-card">
+            <img src="https://m.media-amazon.com/images/I/61i4KY4P7oL.jpg" alt="Rainbow Six Siege" />
+            <div class="game-info"><div class="game-title">Rainbow Six Siege</div><div class="price">$19.99</div></div>
+        </div>
+        <div class="game-card">
+            <img src="https://m.media-amazon.com/images/I/515z2+gP2BL._AC_UL960_QL65_.jpg" alt="Minecraft" />
+            <div class="game-info"><div class="game-title">Minecraft</div><div class="price">$5.99</div></div>
+        </div>
+        <div class="game-card">
+            <img src="https://images.wallpapersden.com/image/download/valorant-2021-game-poster_bGtmZmyUmZqaraWkpJRnamtlrWZrZWU.jpg" alt="Valorant" />
+            <div class="game-info"><div class="game-title">Valorant</div><div class="price">FREE</div></div>
+        </div>
+        <div class="game-card">
+            <img src="https://i.pinimg.com/originals/a5/7c/ff/a57cff62bba9d300b84aa84c147aecc5.jpg" alt="Fortnite" />
+            <div class="game-info"><div class="game-title">Fortnite</div><div class="price">FREE</div></div>
+        </div>
+        <div class="game-card">
+            <img src="https://images.wallpapersden.com/image/download/god-of-war-ragnaroek-4k-gaming-poster_bWtpbG2UmZqaraWkpJRnamtlrWZpaWU.jpg" alt="God of War: Ragnarok" />
+            <div class="game-info"><div class="game-title">God of War: Ragnarok</div><div class="price">$69.99</div></div>
+        </div>
+        <div class="game-card">
+            <img src="https://www.fightersgeneration.com/news2024/game/tekken8-promotional-poster-jin-vs-kazuya.jpg" alt="Tekken 8" />
+            <div class="game-info"><div class="game-title">Tekken 8</div><div class="price">$49.99</div></div>
+        </div>
+        <div class="game-card">
+            <img src="https://prod.assets.earlygamecdn.com/images/elden-ring-dlc-shadow-of-the-erdtree-2Fea.jpg?transform=banner2x_webp" alt="Elden Ring: Shadow of Erdtree" />
+            <div class="game-info"><div class="game-title">Elden Ring: Shadow of Erdtree</div><div class="price">$37.99 20% OFF!</div></div>
+        </div>
+        <div class="game-card">
+            <img src="https://gamingbolt.com/wp-content/uploads/2023/04/Honkai-Star-Rail.jpg" alt="Honkai Star Rail" />
+            <div class="game-info"><div class="game-title">Honkai Star Rail</div><div class="price">FREE</div></div>
+        </div>
+        <div class="game-card">
+            <img src="http://hintergrundbild.org/wallpaper/full/a/2/1/3075-tolle-dark-souls-3-wallpapers-1920x1200-fuer-htc.jpg" alt="Elden Ring: Shadow of Erdtree" />
+            <div class="game-info"><div class="game-title">Dark Souls III</div><div class="price">$43.89</div></div>
+        </div>
+        <div class="game-card">
+            <img src="https://image.api.playstation.com/vulcan/ap/rnd/202306/1613/ec58ee8fe5e28acea5de2e715d471340fab5cce8531dd1a3.jpg" alt="Final Fantasy XVI" />
+            <div class="game-info"><div class="game-title">Final Fantasy XVI</div><div class="price">$39.99</div></div>
+        </div>
+        <div class="game-card">
+            <img src="https://gmedia.playstation.com/is/image/SIEPDC/ghost-of-tsushima-master-image-en-24jun21?$native$" alt="Ghost of Tsushima" />
+            <div class="game-info"><div class="game-title">Ghost of Tsushima</div><div class="price">$55.99</div></div>
+        </div>
+                <div class="game-card">
+            <img src="https://gamebrott.com/wp-content/uploads/2024/10/Review-Metaphor-ReFantazio-Header-jpg.webp" alt="Metaphor: ReFantazio" />
+            <div class="game-info"><div class="game-title">Metaphor: ReFantazio</div><div class="price">$49.99</div></div>
+        </div>
+        <div class="game-card">
+            <img src="https://prod.assets.earlygamecdn.com/images/elden-ring-dlc-shadow-of-the-erdtree-2Fea.jpg?transform=banner2x_webp" alt="Elden Ring: Shadow of Erdtree" />
+            <div class="game-info"><div class="game-title">Elden Ring: Shadow of Erdtree</div><div class="price">$37.99 20% OFF!</div></div>
+        </div>
+        <div class="game-card">
+            <img src="https://gamebrott.com/wp-content/uploads/2024/12/Horizon-Forbidden-West-Complete-Edition.jpg" alt="Horizon Forbidden West: Complete Edition" />
+            <div class="game-info"><div class="game-title">Horizon Forbidden West: Complete Edition</div><div class="price">$41.49</div></div>
+        </div>
+        <div class="game-card">
+            <img src="https://gamebrott.com/wp-content/uploads/2024/12/Little-Kitty-Big-City-1.jpg" alt="Little Kitty, Big City" />
+            <div class="game-info"><div class="game-title">Little Kitty, Big City</div><div class="price">$29.99 25% OFF!</div></div>
+        </div>
+        <div class="game-card">
+            <img src="https://gamebrott.com/wp-content/uploads/2024/12/Call-of-Duty-Black-Ops-6-1.jpg" alt="Call of Duty: Black Ops 6" />
+            <div class="game-info"><div class="game-title">Call of Duty: Black Ops 6</div><div class="price">$65.99</div></div>
+        </div>
+        <div class="game-card">
+            <img src="https://gamebrott.com/wp-content/uploads/2024/12/Prince-of-Persia-The-Lost-Crown-1.jpg" alt="Prince of Persia" />
+            <div class="game-info"><div class="game-title">Prince of Persia</div><div class="price">$32.99</div></div>
+        </div>
+                <div class="game-card">
+            <img src="https://cdn.wallpapersafari.com/52/74/SpE9f8.jpg" alt="Metaphor: Apex Legend" />
+            <div class="game-info"><div class="game-title">Apex Legend</div><div class="price">$14.99</div></div>
+        </div>
+        <div class="game-card">
+            <img src="https://images.wallpapersden.com/image/download/jojo-s-bizarre-adventure-all-star-battle-r-4k-gaming-poster_bmZmZ22UmZqaraWkpJRobWllrWdma2U.jpg" alt="JJBA: All Star Battle" />
+            <div class="game-info"><div class="game-title">JJBA: All Star Battle</div><div class="price">$35.99 15% OFF!</div></div>
+        </div>
+        <div class="game-card">
+            <img src="https://image.api.playstation.com/vulcan/ap/rnd/202505/0121/e658f52678226635fdbe9d82c2d8c3e1fdb5a7450e773cc8.jpg" alt="Mortal Kombat I" />
+            <div class="game-info"><div class="game-title">Mortal Kombat I</div><div class="price">$37.89</div></div>
+        </div>
+        <div class="game-card">
+            <img src="https://myhotposters.com/cdn/shop/products/mL3860_1024x1024.jpg?v=1748534078" alt="Need For Speed" />
+            <div class="game-info"><div class="game-title">Need For Speed: Heat</div><div class="price">$42.99</div></div>
+        </div>
+        <div class="game-card">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2378900/0badd5423ec8cb36d543b7b156121ac2d38ef330/header.jpg?t=1760394751" alt="The Coffin of Lilly and Andy" />
+            <div class="game-info"><div class="game-title">The Coffin of Lilly and Andy</div><div class="price">$25.99</div></div>
+        </div>
+        <div class="game-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJU5mgUU3vsfc-_v3gC7dos1FTYFvUpG024w&s" alt="RE 8" />
+            <div class="game-info"><div class="game-title">Resident Evil: Village</div><div class="price">$70.99</div></div>
+        </div>
+
+
+        </div>
+</div>
+
+</main>
+</div>
+
+</body>
+</html>
+

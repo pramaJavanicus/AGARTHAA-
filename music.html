@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Music</title>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
+  * { box-sizing: border-box; }
+
+    body {
+    margin: 0;
+    font-family: 'JetBrains Mono', monospace;
+    background-color: #121429;
+    color: #f0f0f0;
+}
+
+    .container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+  /* SIDEBAR */
+.sidebar {
+    background-color: #1c1f3a;
+    width: 100px;
+    min-width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
+}
+
+    .sidebar .icon {
+    width: 60px;
+    height: 60px;
+    margin: 25px 0;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #bbbbbb;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.sidebar .icon.active,
+.sidebar .icon:hover {
+    background-color: #c6ff00;
+    color: #000;
+}
+
+.sidebar .icon svg {
+    width: 28px;
+    height: 28px;
+}
+
+  /* MAIN CONTENT */
+.main {
+    flex: 1;
+    padding: 40px 60px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+h2 {
+    font-size: 32px;
+    font-weight: 900;
+    color: #c6ff00;
+}
+
+  /* MUSIC LIST */
+.music-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.music-item {
+    background-color: #282c41;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    box-shadow: 0 0 12px #0006;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.music-item:hover {
+    transform: scale(1.03);
+}
+
+.music-item img {
+    width: 90px;
+    height: 90px;
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+.music-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.music-title {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.artist {
+    opacity: 0.8;
+    font-size: 15px;
+}
+
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<!-- SIDEBAR - MUSIC (ACTIVE) -->
+<aside class="sidebar">
+
+    <a href="index.html" class="icon" title="Gamepad">
+    <svg fill="currentColor" viewBox="0 0 24 24">
+        <path d="M14 8v4h4v-4h-4zm-8 0v4h4v-4h-4zM3 9v6a3 3 0 003 3h3v-8H6a1 1 0 01-1-1V9H3zM17 6h-2v2h2v4h2V6h-2zm5 .5a2.5 2.5 0 00-5 0v5.5h1.5a1.5 1.5 0 110 3h-6v2a2 2 0 002 2h5a5 5 0 005-5v-6.5z"/>
+    </svg>
+    </a>
+
+    <a href="homepage.html" class="icon" title="Home">
+    <svg fill="currentColor" viewBox="0 0 24 24">
+        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+    </svg>
+</a>
+
+    <a href="gamegrid.html" class="icon" title="Game Grid">
+    <svg fill="currentColor" viewBox="0 0 24 24">
+        <path d="M4 4h6v6H4V4zm10 0h6v6h-6V4zm-10 10h6v6H4v-6zm10 0h6v6h-6v-6z"/>
+    </svg>
+</a >
+
+<a href="music.html" class="icon active" title="Music">
+    <svg fill="currentColor" viewBox="0 0 24 24">
+        <path d="M18 3v12.18a4 4 0 11-2-3.47V3h2z"/>
+    </svg>
+</a>
+
+    <div class="icon" title="Friends">
+    <svg fill="currentColor" viewBox="0 0 24 24">
+        <path d="M16 14a4 4 0 100-8 4 4 0 000 8zM6 14a6 6 0 1112 0v3H6v-3z"/>
+    </svg>
+</div>
+
+<div class="icon" title="Stats">
+    <svg fill="currentColor" viewBox="0 0 24 24">
+        <path d="M4 11h2v9H4v-9zm7-6h2v15h-2V5zm7 9h2v6h-2v-6z"/>
+    </svg>
+</div>
+
+<div class="icon" title="Cart">
+    <svg fill="currentColor" viewBox="0 0 24 24">
+    <path d="M7 18a2 2 0 100 4 2 2 0 000-4zm10 0a2 2 0 100 4 2 2 0 000-4zM3 3h2l3.6 7.59L5.25 15.04a1 1 0 00.9 1.46h12.1v-2H7.42L8.1 12H19a1 1 0 00.96-.74l2-8A1 1 0 0020 2H6L4 3z"/>
+    </svg>
+</div>
+
+<div class="icon" title="Download">
+    <svg fill="currentColor" viewBox="0 0 24 24">
+        <path d="M18 14v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4H4l8 8 8-8h-4zm-6 0V2H10v12H4l8 8 8-8h-6z"/>
+    </svg>
+    </div>
+
+</aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+    <h2>Music</h2>
+
+    <div class="music-list">
+
+    <div class="music-item">
+        <img src="https://images.thebrag.com/cdn-cgi/image/fit=cover,width=1200,height=800,format=auto/https://images-r2-1.thebrag.com/tmn/uploads/The-Kid-LAROI-and-Justin-Bieber-Stay.png">
+        <div class="music-info">
+            <div class="music-title">Stay</div>
+            <div class="artist">The Kid LAROI, Justin Bieber</div>
+        </div>
+    </div>
+
+    <div class="music-item">
+        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/0cd265130636097.61842df318d10.jpg">
+        <div class="music-info">
+            <div class="music-title">Enemy</div>
+            <div class="artist">Imagine Dragons</div>
+        </div>
+    </div>
+
+    <div class="music-item">
+        <img src="https://i1.sndcdn.com/artworks-HdP2hgHMtaycpDcx-BDjB0A-t1080x1080.jpg">
+        <div class="music-info">
+            <div class="music-title">Shape of You</div>
+            <div class="artist">Ed Sheeran</div>
+        </div>
+    </div>
+
+    <div class="music-item">
+        <img src="https://eu.rarevinyl.com/cdn/shop/files/the-weeknd-blinding-lights-sealed-uk-7-inch-vinyl-single-00602508599927-758896_1000x999.jpg?v=1722524032">
+        <div class="music-info">
+            <div class="music-title">Blinding Lights</div>
+            <div class="artist">The Weeknd</div>
+        </div>
+    </div>
+
+                <div class="music-item">
+        <img src="https://i.scdn.co/image/009ab27bf9d3d6fb96dedf548a84bb33b2ec7af1">
+        <div class="music-info">
+            <div class="music-title">Musisi</div>
+            <div class="artist">God Bless</div>
+        </div>
+    </div>
+
+            <div class="music-item">
+        <img src="https://i1.sndcdn.com/artworks-000032599038-vl1046-t500x500.jpg">
+        <div class="music-info">
+            <div class="music-title">Payphone</div>
+            <div class="artist">Maroon 5</div>
+        </div>
+    </div>
+
+            <div class="music-item">
+        <img src="https://i.scdn.co/image/ab67616d0000b2737f89316a2d0bf6abe554a39a">
+        <div class="music-info">
+            <div class="music-title">Montagem Rugada</div>
+            <div class="artist">unknown</div>
+        </div>
+    </div>
+
+                <div class="music-item">
+        <img src="https://i.scdn.co/image/ab67616d0000b27305898628baab6ef07a0a4d03">
+        <div class="music-info">
+            <div class="music-title">Everything U Are</div>
+            <div class="artist">Hindia</div>
+        </div>
+    </div>
+
+                <div class="music-item">
+        <img src="https://i1.sndcdn.com/artworks-000097462235-vtnoqw-t500x500.jpg">
+        <div class="music-info">
+            <div class="music-title">Outside</div>
+            <div class="artist">Calvin Harris, Ellie Goulding</div>
+        </div>
+    </div>
+
+                    <div class="music-item">
+        <img src="https://i.ytimg.com/vi/bpOSxM0rNPM/hqdefault.jpg">
+        <div class="music-info">
+            <div class="music-title">Do I Wanna Know?</div>
+            <div class="artist">Arctic Monkeys</div>
+        </div>
+    </div>
+
+
+
+    </div>
+</main>
+
+</div>
+</body>
+</html>

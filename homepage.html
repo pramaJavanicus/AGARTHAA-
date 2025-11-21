@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Home</title>
+
+<style>
+  @import url('https://www.creativefabrica.com/wp-content/uploads/2021/05/29/Gaming-web-banner-header-template-Graphics-12645414-1.jpg');
+
+  * { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: 'JetBrains Mono', monospace;
+    background-color: #121429;
+    color: #f0f0f0;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+/* SIDEBAR */
+.sidebar {
+    background-color: #1c1f3a;
+    width: 100px;
+    min-width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
+}
+
+.sidebar .icon {
+    width: 60px;
+    height: 60px;
+    margin: 25px 0;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #bbbbbb;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.sidebar .icon.active,
+.sidebar .icon:hover {
+    background-color: #c6ff00;
+    color: #000;
+}
+
+.sidebar .icon svg {
+    width: 28px;
+    height: 28px;
+}
+
+/* MAIN */
+.main {
+    flex: 1;
+    padding: 40px 60px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+h2 {
+    font-size: 32px;
+    font-weight: 900;
+    margin-bottom: 15px;
+    color: #c6ff00;
+}
+
+/* BANNER */
+.banner {
+    width: 120%;
+    height: 200px;
+    border-radius: 28px;
+    background-image: url('https://static0.gamerantimages.com/wordpress/wp-content/uploads/2024/09/black_myth_wukong_the_destined_one.jpg');
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 0 20px #000a;
+}
+
+/* HORIZONTAL GAME LIST */
+.horizontal-list {
+    display: flex;
+    gap: 30px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+}
+
+.horizontal-list::-webkit-scrollbar {
+    height: 8px;
+}
+.horizontal-list::-webkit-scrollbar-thumb {
+    background: #3a3e5e;
+    border-radius: 10px;
+}
+
+.game-card {
+    background-color: #282c41;
+    border-radius: 24px;
+    min-width: 230px;
+    box-shadow: 0 0 20px #000a;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.game-card:hover {
+    transform: scale(1.05);
+}
+
+.game-card img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+}
+
+.game-info {
+    padding: 15px;
+}
+
+.game-title {
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.price {
+    color: #c6ff00;
+    font-size: 15px;
+    margin-top: 3px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- SIDEBAR - HOMEPAGE (HOME ACTIVE) -->
+<aside class="sidebar">
+
+  <a href="index.html" class="icon" title="Gamepad">
+    <svg fill="currentColor" viewBox="0 0 24 24">
+      <path d="M14 8v4h4v-4h-4zm-8 0v4h4v-4h-4zM3 9v6a3 3 0 003 3h3v-8H6a1 1 0 01-1-1V9H3zM17 6h-2v2h2v4h2V6h-2zm5 .5a2.5 2.5 0 00-5 0v5.5h1.5a1.5 1.5 0 110 3h-6v2a2 2 0 002 2h5a5 5 0 005-5v-6.5z"/>
+    </svg>
+  </a>
+
+  <a href="homepage.html" class="icon active" title="Home">
+    <svg fill="currentColor" viewBox="0 0 24 24">
+      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+    </svg>
+  </a>
+
+  <a href="gamegrid.html" class="icon" title="Game Grid">
+    <svg fill="currentColor" viewBox="0 0 24 24">
+      <path d="M4 4h6v6H4V4zm10 0h6v6h-6V4zm-10 10h6v6H4v-6zm10 0h6v6h-6v-6z"/>
+    </svg>
+  </a>
+
+  <a href="music.html" class="icon" title="Music">
+    <svg fill="currentColor" viewBox="0 0 24 24">
+      <path d="M18 3v12.18a4 4 0 11-2-3.47V3h2z"/>
+    </svg>
+  </a>
+
+  <div class="icon" title="Friends">
+    <svg fill="currentColor" viewBox="0 0 24 24">
+      <path d="M16 14a4 4 0 100-8 4 4 0 000 8zM6 14a6 6 0 1112 0v3H6v-3z"/>
+    </svg>
+  </div>
+
+  <div class="icon" title="Stats">
+    <svg fill="currentColor" viewBox="0 0 24 24">
+      <path d="M4 11h2v9H4v-9zm7-6h2v15h-2V5zm7 9h2v6h-2v-6z"/>
+    </svg>
+  </div>
+
+  <div class="icon" title="Cart">
+    <svg fill="currentColor" viewBox="0 0 24 24">
+      <path d="M7 18a2 2 0 100 4 2 2 0 000-4zm10 0a2 2 0 100 4 2 2 0 000-4zM3 3h2l3.6 7.59L5.25 15.04a1 1 0 00.9 1.46h12.1v-2H7.42L8.1 12H19a1 1 0 00.96-.74l2-8A1 1 0 0020 2H6L4 3z"/>
+    </svg>
+  </div>
+
+  <div class="icon" title="Download">
+    <svg fill="currentColor" viewBox="0 0 24 24">
+      <path d="M18 14v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4H4l8 8 8-8h-4zm-6 0V2H10v12H4l8 8 8-8h-6z"/>
+    </svg>
+  </div>
+
+</aside>
+
+
+<!-- MAIN CONTENT -->
+<main class="main">
+
+    <div class="banner"></div>
+
+    <section>
+        <h2>Recommended For You</h2>
+        <div class="horizontal-list">
+            <div class="game-card">
+                <img src="https://cdn1.epicgames.com/spt-assets/dcd83ace86fb4501bde1316ca03e29ad/zenless-zone-zero-ynh5r.png">
+                <div class="game-info"><div class="game-title">Zenless Zone Zero</div><div class="price">FREE</div></div>
+            </div>
+            <div class="game-card">
+                <img src="https://i.pinimg.com/originals/a5/7c/ff/a57cff62bba9d300b84aa84c147aecc5.jpg">
+                <div class="game-info"><div class="game-title">Fortnite</div><div class="price">FREE</div></div>
+            </div>
+            <div class="game-card">
+                <img src="https://cdn.europosters.eu/image/1300/102945.jpg">
+                <div class="game-info"><div class="game-title">Cyberpunk 2077</div><div class="price">$59.99</div></div>
+            </div>
+            <div class="game-card">
+                <img src="https://m.media-amazon.com/images/I/61i4KY4P7oL.jpg">
+                <div class="game-info"><div class="game-title">Rainbow Six Siege</div><div class="price">$19.99</div></div>
+            </div>
+            
+        </div>
+    </section>
+
+    <section>
+        <h2>Trending Now</h2>
+        <div class="horizontal-list">
+            <div class="game-card">
+                <img src="https://gamingbolt.com/wp-content/uploads/2023/04/Honkai-Star-Rail.jpg">
+                <div class="game-info"><div class="game-title">Honkai Star Rail</div><div class="price">FREE</div></div>
+            </div>
+            <div class="game-card">
+                <img src="https://prod.assets.earlygamecdn.com/images/elden-ring-dlc-shadow-of-the-erdtree-2Fea.jpg">
+                <div class="game-info"><div class="game-title">Elden Ring DLC</div><div class="price">$37.99</div></div>
+            </div>
+            <div class="game-card">
+                <img src="https://www.fightersgeneration.com/news2024/game/tekken8-promotional-poster-jin-vs-kazuya.jpg">
+                <div class="game-info"><div class="game-title">Tekken 8</div><div class="price">$49.99</div></div>
+            </div>
+            <div class="game-card">
+                <img src="https://www.konami.com/efootball/s/img/page/yugioh/yo-gi-oh_efootball_visual_jp.jpg">
+                <div class="game-info"><div class="game-title">E football</div><div class="price">$21.59</div></div>
+            </div>
+        </div>
+    </section>
+
+</main>
+</div>
+
+</body>
+</html>
